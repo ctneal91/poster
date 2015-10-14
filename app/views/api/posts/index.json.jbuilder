@@ -1,2 +1,5 @@
-<h1>Api::Posts#index</h1>
-<p>Find me in app/views/api/posts/index.html.erb</p>
+json.posts @posts.each do |post|
+  json.id post.id
+  json.title post.title
+  json.body post.body
+end

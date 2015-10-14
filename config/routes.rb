@@ -1,16 +1,9 @@
 Rails.application.routes.draw do
 
-  # GET /api/posts to return all posts
-  # GET /api/posts/:id gives details of a post
-  # POST /api/posts creates a post
-  # PUT /api/posts/:id updates a post
-  # PATCH /api/posts/:id updates a post
-  # DELETE /api/posts/:id deletes a post
-  
   namespace :api do
   get 'posts' => 'posts#index'
-  get 'posts/:id' => 'posts#show', as: :post
-  post 'posts' => 'posts#create', as: :posts
+  get 'posts/:id' => 'posts#show'
+  post 'posts' => 'posts#create'
   put 'posts/:id' => 'posts#edit'
   patch 'posts/:id' => 'posts#change'
   delete 'posts/:id' => 'posts#delete'
