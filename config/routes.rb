@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
+
+  # GET /api/posts to return all posts
+  # GET /api/posts/:id gives details of a post
+  # POST /api/posts creates a post
+  # PUT /api/posts/:id updates a post
+  # PATCH /api/posts/:id updates a post
+  # DELETE /api/posts/:id deletes a post
+  
   namespace :api do
-  get 'posts/index'
+  get 'posts' => 'posts#index'
+  get 'posts/:id' => 'posts#show', as: :post
+  post 'posts' => 'posts#create', as: :posts
+  put 'posts/:id' => 'posts#edit'
+  patch 'posts/:id' => 'posts#change'
+  delete 'posts/:id' => 'posts#delete'
   end
 
-  namespace :api do
-  get 'posts/show'
-  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
