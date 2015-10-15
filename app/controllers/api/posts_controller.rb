@@ -13,9 +13,11 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new.require(:post).permit(:title, :body)
-    if @Post.save
-      redirect_to '/api/posts'
+    @post = Post.new params.require(:post).permit(:title, :body)
+    if @post.save
+      render status: 201, json: @post
+    else
+      render status: 422, json: @post.errors
     end
   end
 
@@ -23,11 +25,18 @@ class Api::PostsController < ApplicationController
     @post = Post.find params[:id]
   end
 
-  def change
+  def update
     @post = Post.find params[:id]
+    if @post.update params.require(:post).permit(:title, :body)
+      render status: 201, json: @post
+    else
+      render status: 422, json: @post
+    end
   end
 
   def delete
     @post = Post.find params[:id]
+    @post.destroy
+    redirect_to '/api/posts'
   end
 end
