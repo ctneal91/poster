@@ -21,10 +21,6 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  def edit
-    @post = Post.find params[:id]
-  end
-
   def update
     @post = Post.find params[:id]
     if @post.update params.require(:post).permit(:title, :body)
@@ -34,7 +30,7 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @post = Post.find params[:id]
     @post.destroy
     redirect_to '/api/posts'
